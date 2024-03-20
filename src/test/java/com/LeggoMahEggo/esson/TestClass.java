@@ -140,7 +140,7 @@ public class TestClass {
         @BeforeAll
         public void findTestFiles() {
             for (String folder : TEST_FOLDERS) {
-                String folderPath = TestClass.class.getResource(folder).getPath();
+                String folderPath = TestClass.class.getClassLoader().getResource(folder).getPath();
                 File[] testFolders = new File(folderPath).listFiles();
 
                 for (File testFolder : testFolders) {
