@@ -1,4 +1,4 @@
-package com.doopy.exceptions;
+package com.esson.exceptions;
 
 public class NumberParserException extends ValueParserException {
     public NumberParserException(String message) {

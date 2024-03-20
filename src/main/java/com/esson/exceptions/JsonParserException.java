@@ -1,4 +1,4 @@
-package com.doopy.exceptions;
+package com.esson.exceptions;
 
 public class JsonParserException extends RuntimeException {
     public JsonParserException(String message) {

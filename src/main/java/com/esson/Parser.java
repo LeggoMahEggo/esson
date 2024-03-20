@@ -1,7 +1,7 @@
 package com.esson;
 
-import com.doopy.exceptions.IllegalCharacterException;
-import com.doopy.exceptions.JsonParserException;
+import com.esson.exceptions.IllegalCharacterException;
+import com.esson.exceptions.JsonParserException;
 
 import java.io.File;
 import java.io.FileInputStream;

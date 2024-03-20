@@ -1,4 +1,4 @@
-package com.doopy.exceptions;
+package com.esson.exceptions;
 
 public class ValueParserException extends JsonParserException {
     public ValueParserException(String message) {

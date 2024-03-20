@@ -1,8 +1,8 @@
 package com.esson;
 
-import com.doopy.exceptions.JsonParserException;
-import com.doopy.exceptions.ValueParserException;
-import com.doopy.exceptions.NumberParserException;
+import com.esson.exceptions.JsonParserException;
+import com.esson.exceptions.ValueParserException;
+import com.esson.exceptions.NumberParserException;
 
 import java.util.Set;
 import java.util.regex.Matcher;
