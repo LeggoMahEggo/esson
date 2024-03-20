@@ -1,6 +1,7 @@
 import com.esson.JsonList;
 import com.esson.JsonMap;
 import com.esson.JsonValue;
+import com.esson.JsonValue.ValueType;
 import com.esson.Options;
 import com.esson.Parser;
 import org.junit.jupiter.api.Assertions;
@@ -31,6 +32,92 @@ public class TestClass {
             lhm.put(keys.get(i), values.get(i));
 
         return lhm;
+    }
+
+    @Nested
+    public class GeneralTests {
+
+        private static class TypeCounter {
+            private int listNum;
+            private int mapNum;
+
+            TypeCounter() {
+                listNum = 0;
+                mapNum = 0;
+            }
+        }
+
+        private TypeCounter traverser(JsonValue value, TypeCounter counter) {
+            if (value.getValueType().equals(ValueType.LIST)) {
+                for (JsonValue lValue : value.getAsList()) {
+
+                    // Increase count
+                    switch (lValue.getValueType()) {
+                        case REGULAR: continue;
+                        case LIST: counter.listNum++; break;
+                        case MAP: counter.mapNum++;
+                    }
+
+                    // Check list/map out
+                    traverser(lValue, counter);
+                }
+
+            } else if (value.getValueType().equals(ValueType.MAP)) {
+
+                for (JsonValue mValue : value.getAsMap().values()) {
+                    // Increase count
+                    switch (mValue.getValueType()) {
+                        case REGULAR: continue;
+                        case LIST: counter.listNum++; break;
+                        case MAP: counter.mapNum++;
+                    }
+
+                    // Check list/map out
+                    traverser(mValue, counter);
+                }
+            }
+
+            return counter;
+        }
+
+
+        @Test
+        public void traverseJson() {
+            /*
+             * Create JsonValue object
+             */
+            List<Object> listWithNull = new ArrayList<>(); // Cannot add a null value directly to List.of
+            listWithNull.add(null);
+
+            JsonValue tree = JsonValue.valueOf(JsonList.fromList(
+                    List.of("b\\n\\r\\b\\n'", 10000, 15, 371293, 5.9049000000000005d, "13'2", false,
+                            createdLHM(List.of("ab", "av"), List.of("b", "d")), true, List.of(), Map.of(),
+                            createdLHM(List.of("ab", "value", "mappy"),
+                                    List.of(
+                                            "c",
+                                            true,
+                                            createdLHM(List.of("ab", "doot"), List.of(true, List.of(true, false, "b", "cre")))
+                                    )
+                            ),
+                            "beepy", listWithNull, Map.of(), "ne\"e\\npy")
+            ));
+
+            TypeCounter counter = traverser(tree, new TypeCounter());
+            Assertions.assertAll(
+                    () -> {
+                        int expectedLists = 3;
+                        System.out.println("Expected lists: " + expectedLists);
+                        System.out.println("Actual lists: " + counter.listNum);
+                        Assertions.assertEquals(expectedLists, counter.listNum);
+                    },
+                    () -> {
+                        int expectedMaps = 5;
+                        System.out.println("Expected maps: " + expectedMaps);
+                        System.out.println("Actual maps: " + counter.mapNum);
+                        Assertions.assertEquals(expectedMaps, counter.mapNum);
+                    }
+            );
+        }
     }
 
     @Nested
