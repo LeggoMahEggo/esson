@@ -10,8 +10,8 @@
     <description>A simple library for parsing JSON into Java</description>
 
     <properties>
-        <maven.compiler.source>16</maven.compiler.source>
-        <maven.compiler.target>16</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <jupiter.version>5.10.2</jupiter.version>
     </properties>
 

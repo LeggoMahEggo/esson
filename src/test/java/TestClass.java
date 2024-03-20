@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Named;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -21,6 +23,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class TestClass {
 
@@ -37,7 +40,7 @@ public class TestClass {
     @Nested
     public class GeneralTests {
 
-        private static class TypeCounter {
+        private class TypeCounter {
             private int listNum;
             private int mapNum;
 
@@ -120,16 +123,17 @@ public class TestClass {
         }
     }
 
+    @TestInstance(Lifecycle.PER_CLASS)
     @Nested
     public class FileTests {
-        private static final List<File> PASS_FILES = new ArrayList<>();
-        private static final List<File> FAIL_FILES = new ArrayList<>();
-        private static final List<String> TEST_FOLDERS = List.of(
+        private final List<File> PASS_FILES = new ArrayList<>();
+        private final List<File> FAIL_FILES = new ArrayList<>();
+        private final List<String> TEST_FOLDERS = List.of(
                 "Google_Code_json-test-suite",
                 "json.org_JSON_checker",
                 "custom"
         );
-        private static final Map<String, List<String>> FILES_TO_IGNORE = Map.of(
+        private final Map<String, List<String>> FILES_TO_IGNORE = Map.of(
                 "json.org_JSON_checker", List.of(
                         "fail1.json", // EMCA-404 standard allows for top-level values that are not arrays/objects
                         "fail18.json" // Depth-checking is not part of the EMCA-404 standard
@@ -137,7 +141,7 @@ public class TestClass {
         );
 
         @BeforeAll
-        public static void findTestFiles() {
+        public void findTestFiles() {
             for (String folder : TEST_FOLDERS) {
                 String folderPath = TestClass.class.getResource(folder).getPath();
                 File[] testFolders = new File(folderPath).listFiles();
@@ -216,16 +220,16 @@ public class TestClass {
         /*
          * Method sources
          */
-        private static Named<File> namedArgument(File file) {
+        private Named<File> namedArgument(File file) {
             return Named.named(file.getName() + " - " + file.getParentFile().getParentFile().getName(), file);
         }
 
-        private static List<Arguments> passFileMethodSource() {
-            return PASS_FILES.stream().map(f -> Arguments.of(namedArgument(f))).toList();
+        private List<Arguments> passFileMethodSource() {
+            return PASS_FILES.stream().map(f -> Arguments.of(namedArgument(f))).collect(Collectors.toList());
         }
 
-        private static List<Arguments> failFileMethodSource() {
-            return FAIL_FILES.stream().map(f -> Arguments.of(namedArgument(f))).toList();
+        private List<Arguments> failFileMethodSource() {
+            return FAIL_FILES.stream().map(f -> Arguments.of(namedArgument(f))).collect(Collectors.toList());
         }
 
 
@@ -297,6 +301,7 @@ public class TestClass {
         }
     }
 
+    @TestInstance(Lifecycle.PER_CLASS)
     @Nested
     public class TopLevelTests {
         @Test
@@ -344,6 +349,7 @@ public class TestClass {
         }
     }
 
+    @TestInstance(Lifecycle.PER_CLASS)
     @Nested
     public class OptionsTests {
 
@@ -351,7 +357,7 @@ public class TestClass {
          * Method sources
          */
 
-        private static List<Arguments> commaAtEndMethodSource() {
+        private List<Arguments> commaAtEndMethodSource() {
             return List.of(
                     Arguments.of("array", "[1,2,3,]",
                             JsonValue.valueOf(JsonList.fromList(List.of(1,2,3)))
@@ -364,14 +370,14 @@ public class TestClass {
             );
         }
 
-        private static List<Arguments> leadingZeroesMethodSource() {
+        private List<Arguments> leadingZeroesMethodSource() {
             return List.of(
                     Arguments.of("000013", 13),
                     Arguments.of("16e+002", 256)
             );
         }
 
-        private static List<Arguments> plusAtFrontMethodSource() {
+        private List<Arguments> plusAtFrontMethodSource() {
             return List.of(
                     Arguments.of("+5000", JsonValue.valueOf(5000)),
                     Arguments.of("+10000e-1", JsonValue.valueOf(0.0001d))

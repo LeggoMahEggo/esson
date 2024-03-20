@@ -272,16 +272,30 @@ public class Parser {
         if (currentChar == '[' || currentChar == '{')
             cursor.increaseDepth();
 
-        return switch (currentChar) {
-            case '\'', '"' -> JsonValue.valueOf(cursor.collectString(currentChar));
-            case 't', 'f' -> JsonValue.valueOf(cursor.collectBoolean());
-            case 'n' -> JsonValue.valueOf(cursor.collectNull());
-            case '-', '+', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ->
-                    JsonValue.valueOf(cursor.collectNumber());
-            case '[', '{' -> parseFromString(cursor);
-            default -> throw new IllegalCharacterException(
+        // Done this way to support Java 11+
+        switch (currentChar) {
+            case '\'':
+            case '"': return JsonValue.valueOf(cursor.collectString(currentChar));
+            case 't':
+            case 'f': return JsonValue.valueOf(cursor.collectBoolean());
+            case 'n': return JsonValue.valueOf(cursor.collectNull());
+            case '-':
+            case '+':
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9': return JsonValue.valueOf(cursor.collectNumber());
+            case '[':
+            case '{': return parseFromString(cursor);
+            default: throw new IllegalCharacterException(
                     "Encountered an unknown character ('" + currentChar + "') while trying to determine the type of value " +
                             "to collect" + cursor.locationErrMsgHelper());
-        };
+        }
     }
 }

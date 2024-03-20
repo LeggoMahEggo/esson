@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.util.Precision;
 
 /**
- * Represents some JSON value. Valid types are null, Boolean, String, Long, Double, Integer (cast to Long), JsonList (backed
+ * Represents some legal JSON value. Valid types are null, Boolean, String, Long, Double, Integer (cast to Long), JsonList (backed
  *  by an ArrayList), and JsonMap (backed by a LinkedHashMap)
  */
 public class JsonValue {
@@ -136,8 +136,10 @@ public class JsonValue {
         if (other == this)
             return true;
 
-        if (!(other instanceof JsonValue otherValue))
+        if (!(other instanceof JsonValue))
             return false;
+
+        JsonValue otherValue = (JsonValue) other;
 
         // Null values
         if (otherValue.internal == null && internal == null)

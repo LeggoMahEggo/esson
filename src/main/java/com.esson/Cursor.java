@@ -210,14 +210,15 @@ class Cursor {
      * @throws ValueParserException if c is a control character
      */
     private void checkForControlCharacter(char c) throws ValueParserException {
-        char cc = switch(c) {
-            case '\b' -> 'b';
-            case '\f' -> 'f';
-            case '\n' -> 'n';
-            case '\r' -> 'r';
-            case '\t' -> 't';
-            default -> 0;
-        };
+        char cc = 0;
+
+        switch(c) {
+            case '\b': cc = 'b'; break;
+            case '\f': cc = 'f'; break;
+            case '\n': cc = 'n'; break;
+            case '\r': cc = 'r'; break;
+            case '\t': cc = 't'; break;
+        }
 
         if (cc > 0)
             throw new ValueParserException("Encountered illegal control character '\\" + cc + "' while collecting a string" +
@@ -499,7 +500,7 @@ class Cursor {
             throw new NumberParserException("Exponent cannot only consist of a '+/-' character" + locationErrMsgHelper());
 
         String numberString = removeLeadingZeros(collector.toString());
-        String exponentString = (eCollector.isEmpty()) ? "" : removeLeadingZeros(eCollector.deleteCharAt(0).toString());
+        String exponentString = (eCollector.length() == 0) ? "" : removeLeadingZeros(eCollector.deleteCharAt(0).toString());
 
         // Finally, convert from string
         if (exponentString.isBlank()) {
