@@ -17,7 +17,20 @@ public class JsonValue {
      * @param value a Boolean, String, Number (Integer/Long/Double), JsonMap, JsonList, or null value
      * @return a JsonValue object
      */
-    public static JsonValue valueOf(Object value) {
+    public static JsonValue valueOf(Object value) throws IllegalArgumentException {
+        // Make sure value is legal JSON value
+        if (value != null &&
+                !(value instanceof String) &&
+                !(value instanceof Integer) &&
+                !(value instanceof Long) &&
+                !(value instanceof Double) &&
+                !(value instanceof Boolean) &&
+                !(value instanceof JsonList) &&
+                !(value instanceof JsonMap)
+        )
+            throw new IllegalArgumentException("Illegal value to wrap: must be a null, String, Boolean, Integer, Long, " +
+                    "Double, JsonList, or JsonMap (was of type " + value.getClass().getSimpleName() + ")");
+
         JsonValue jv = new JsonValue();
         jv.internal = (value instanceof Integer) ? Long.valueOf((Integer) value) : value;
         return jv;
