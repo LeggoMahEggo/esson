@@ -1,4 +1,4 @@
-package com.esson.exceptions;
+package com.LeggoMahEggo.esson.exceptions;
 
 public class JsonParserException extends RuntimeException {
     public JsonParserException(String message) {

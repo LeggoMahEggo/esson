@@ -1,4 +1,4 @@
-package com.esson;
+package com.LeggoMahEggo.esson;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.util.Precision;

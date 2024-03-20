@@ -1,8 +1,8 @@
-package com.esson;
+package com.LeggoMahEggo.esson;
 
-import com.esson.exceptions.JsonParserException;
-import com.esson.exceptions.ValueParserException;
-import com.esson.exceptions.NumberParserException;
+import com.LeggoMahEggo.esson.exceptions.JsonParserException;
+import com.LeggoMahEggo.esson.exceptions.NumberParserException;
+import com.LeggoMahEggo.esson.exceptions.ValueParserException;
 
 import java.util.Set;
 import java.util.regex.Matcher;

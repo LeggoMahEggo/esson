@@ -1,4 +1,4 @@
-package com.esson;
+package com.LeggoMahEggo.esson;
 
 /**
  * Class for setting options for the parser to ignore EMCA-404 standards (such as enclosing a string with a single-quote)

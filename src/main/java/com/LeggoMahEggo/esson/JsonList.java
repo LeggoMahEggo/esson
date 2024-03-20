@@ -1,4 +1,4 @@
-package com.esson;
+package com.LeggoMahEggo.esson;
 
 import java.util.ArrayList;
 import java.util.List;

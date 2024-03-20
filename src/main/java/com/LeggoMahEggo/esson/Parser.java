@@ -1,7 +1,7 @@
-package com.esson;
+package com.LeggoMahEggo.esson;
 
-import com.esson.exceptions.IllegalCharacterException;
-import com.esson.exceptions.JsonParserException;
+import com.LeggoMahEggo.esson.exceptions.IllegalCharacterException;
+import com.LeggoMahEggo.esson.exceptions.JsonParserException;
 
 import java.io.File;
 import java.io.FileInputStream;

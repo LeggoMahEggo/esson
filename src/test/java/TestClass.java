@@ -1,9 +1,9 @@
-import com.esson.JsonList;
-import com.esson.JsonMap;
-import com.esson.JsonValue;
-import com.esson.JsonValue.ValueType;
-import com.esson.Options;
-import com.esson.Parser;
+import com.LeggoMahEggo.esson.JsonList;
+import com.LeggoMahEggo.esson.JsonMap;
+import com.LeggoMahEggo.esson.JsonValue;
+import com.LeggoMahEggo.esson.JsonValue.ValueType;
+import com.LeggoMahEggo.esson.Options;
+import com.LeggoMahEggo.esson.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Named;
