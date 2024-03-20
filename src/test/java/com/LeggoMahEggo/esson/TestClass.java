@@ -14,11 +14,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.File;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -117,6 +119,129 @@ public class TestClass {
                         Assertions.assertEquals(expectedMaps, counter.mapNum);
                     }
             );
+        }
+    }
+
+    @TestInstance(Lifecycle.PER_CLASS)
+    @Nested
+    public class JsonValueTests {
+
+        /*
+         * Method sources
+         */
+
+        private List<Arguments> valueTypeMethodSource() {
+            List<Arguments> list = new ArrayList<>(); // Not List.of() so as to allow null values
+
+            // Regular
+            list.add(Arguments.of(null, ValueType.REGULAR));
+            list.add(Arguments.of(true, ValueType.REGULAR));
+            list.add(Arguments.of(15, ValueType.REGULAR));
+            list.add(Arguments.of(87.2, ValueType.REGULAR));
+            list.add(Arguments.of("yabba dabba doo!", ValueType.REGULAR));
+
+            // List
+            list.add(Arguments.of(JsonList.fromList(List.of()), ValueType.LIST));
+            list.add(Arguments.of(JsonList.fromList(List.of(1, 2, 3, 4)), ValueType.LIST));
+            list.add(Arguments.of(JsonList.fromList(List.of("aa", true, 55.9)), ValueType.LIST));
+            list.add(Arguments.of(JsonList.fromList(List.of(createdLHM(List.of("Here's a map ;)"), List.of(90)))), ValueType.LIST));
+
+            // Map
+            list.add(Arguments.of(JsonMap.fromMap(createdLHM(List.of(), List.of())), ValueType.MAP));
+            list.add(Arguments.of(JsonMap.fromMap(createdLHM(List.of("a", "b"), List.of(1, 2))), ValueType.MAP));
+            list.add(Arguments.of(JsonMap.fromMap(createdLHM(List.of("Here's a list ;)"), List.of(List.of("boop!")))),
+                    ValueType.MAP));
+
+            return list;
+        }
+
+        public List<Object> throwsMethodSource() {
+            return List.of(List.of(), Map.of(), Set.of(), Pattern.compile("abc"), Options.defaultOptions(),
+                    new File("file"), Path.of("path"));
+        }
+
+
+        /*
+         * Tests
+         */
+
+        @ParameterizedTest
+        @ValueSource(booleans = {true, false})
+        public void getAsBoolean(Boolean bool) {
+            System.out.println("Expected: " + bool);
+            Assertions.assertEquals(bool, JsonValue.valueOf(bool).getAsBoolean());
+        }
+
+        @Test
+        public void getAsString() {
+            String str = "thi\ngy";
+            System.out.println("Expected: " + str);
+            Assertions.assertEquals(str, JsonValue.valueOf(str.replace("\n", "\\n")).getAsString());
+        }
+
+        @Test
+        public void getAsLongNumber() {
+            Long l = 69420L;
+            System.out.println("Expected: " + l);
+            Assertions.assertEquals(l, JsonValue.valueOf(l).getAsNumber());
+        }
+
+        @Test
+        public void getAsDoubleNumber() {
+            Double d = 69420.421337D;
+            System.out.println("Expected: " + d);
+            Assertions.assertEquals(d, JsonValue.valueOf(d).getAsNumber());
+        }
+
+        @Test
+        public void isNullValue() {
+            System.out.println("Expected to be null");
+            Assertions.assertTrue(JsonValue.valueOf(null).isNullValue());
+        }
+
+        @ParameterizedTest
+        @MethodSource("valueTypeMethodSource")
+        public void valueTypeIsCorrect(Object obj, ValueType valueType) {
+            System.out.println("Expected value type is " + valueType);
+            Assertions.assertEquals(valueType, JsonValue.valueOf(obj).getValueType());
+        }
+
+        @Test
+        public void nullToString() {
+            System.out.println("Expected: \"null\"");
+            Assertions.assertEquals("null", JsonValue.valueOf(null).toString());
+        }
+
+        @Test
+        public void stringToString() {
+            String str = "This is a string!";
+            System.out.println("Expected: '" + str + "'");
+            Assertions.assertEquals("'" + str + "'", JsonValue.valueOf(str).toString());
+        }
+
+        @Test
+        public void listToString() {
+            System.out.println("Expected: \"[1, 2, 3]\"");
+            Assertions.assertEquals("[1, 2, 3]", JsonValue.valueOf(JsonList.fromList(List.of(1, 2, 3))).toString());
+        }
+
+        @Test
+        public void mapToString() {
+            Map<String, Object> map = createdLHM(List.of("a", "b", "c", "d"), List.of(1, "2", true, List.of()));
+            System.out.println("Expected: \"" + map + "\"");
+            Assertions.assertEquals("{a=1, b='2', c=true, d=[]}", JsonValue.valueOf(JsonMap.fromMap(map)).toString());
+        }
+
+        @ParameterizedTest
+        @MethodSource("throwsMethodSource")
+        public void throwsForUnsupportedValues(Object obj) {
+            Assertions.assertThrowsExactly(IllegalArgumentException.class, () -> JsonValue.valueOf(obj));
+        }
+
+        @Test
+        public void integerDoesNotThrow() {
+            int num = 1;
+            Assertions.assertDoesNotThrow(() -> JsonValue.valueOf(num));
         }
     }
 
