@@ -23,6 +23,16 @@ import java.util.regex.Pattern;
 
 public class TestClass {
 
+    // Helper method to create LinkedHashMap objects for tests
+    private static Map<String, Object> createdLHM(List<String> keys, List<?> values) {
+        Map<String, Object> lhm = new LinkedHashMap<>();
+
+        for (int i = 0; i < keys.size(); i++)
+            lhm.put(keys.get(i), values.get(i));
+
+        return lhm;
+    }
+
     @Nested
     public class FileTests {
         private static final List<File> PASS_FILES = new ArrayList<>();
@@ -249,16 +259,6 @@ public class TestClass {
 
     @Nested
     public class OptionsTests {
-
-        // Helper method to create LinkedHashMap objects for tests
-        private static Map<String, Object> createdLHM(List<String> keys, List<?> values) {
-            Map<String, Object> lhm = new LinkedHashMap<>();
-
-            for (int i = 0; i < keys.size(); i++)
-                lhm.put(keys.get(i), values.get(i));
-
-            return lhm;
-        }
 
         /*
          * Method sources
