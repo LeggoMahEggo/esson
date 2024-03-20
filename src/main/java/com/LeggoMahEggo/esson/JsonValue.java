@@ -4,8 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.util.Precision;
 
 /**
- * Represents some legal JSON value. Valid types are null, Boolean, String, Long, Double, Integer (cast to Long), JsonList (backed
- *  by an ArrayList), and JsonMap (backed by a LinkedHashMap)
+ * Represents some legal JSON value, wrapping a Java value. Valid types are null, Boolean, String, Long, Double, Integer
+ * (cast to Long), JsonList (backed by an ArrayList), and JsonMap (backed by a LinkedHashMap)
  */
 public class JsonValue {
     private Object internal; // Wrapped value
@@ -14,8 +14,9 @@ public class JsonValue {
 
     /**
      * Factory method to return a JsonValue object with its internal value set
-     * @param value a Boolean, String, Number (Integer/Long/Double), JsonMap, JsonList, or null value
+     * @param value a Boolean, String, Integer, Long, Double, JsonMap, JsonList, or a null value
      * @return a JsonValue object
+     * @throws IllegalArgumentException if value is not a supported JSON value
      */
     public static JsonValue valueOf(Object value) throws IllegalArgumentException {
         // Make sure value is legal JSON value
