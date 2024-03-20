@@ -1,4 +1,4 @@
-package com.esson.exceptions;
+package com.doopy.exceptions;
 
 public class IllegalCharacterException extends JsonParserException {
     public IllegalCharacterException(String message) {
