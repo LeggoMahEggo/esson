@@ -36,6 +36,13 @@ public class TestClass {
         return lhm;
     }
 
+    // Helper method to have a null value in a List, as you cannot add a null value directly to List.of
+    private static List<Object> nullList() {
+        List<Object> nullList = new ArrayList<>();
+        nullList.add(null);
+        return nullList;
+    }
+
     @Nested
     public class GeneralTests {
 
@@ -88,9 +95,6 @@ public class TestClass {
             /*
              * Create JsonValue object
              */
-            List<Object> listWithNull = new ArrayList<>(); // Cannot add a null value directly to List.of
-            listWithNull.add(null);
-
             JsonValue tree = JsonValue.valueOf(JsonList.fromList(
                     List.of("b\\n\\r\\b\\n'", 10000, 15, 371293, 5.9049000000000005d, "13'2", false,
                             createdLHM(List.of("ab", "av"), List.of("b", "d")), true, List.of(), Map.of(),
@@ -101,7 +105,7 @@ public class TestClass {
                                             createdLHM(List.of("ab", "doot"), List.of(true, List.of(true, false, "b", "cre")))
                                     )
                             ),
-                            "beepy", listWithNull, Map.of(), "ne\"e\\npy")
+                            "beepy", nullList(), Map.of(), "ne\"e\\npy")
             ));
 
             TypeCounter counter = traverser(tree, new TypeCounter());
