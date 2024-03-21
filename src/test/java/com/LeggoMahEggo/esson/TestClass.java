@@ -43,6 +43,8 @@ public class TestClass {
         return nullList;
     }
 
+
+    @TestInstance(Lifecycle.PER_CLASS)
     @Nested
     public class GeneralTests {
 
@@ -123,6 +125,78 @@ public class TestClass {
                         Assertions.assertEquals(expectedMaps, counter.mapNum);
                     }
             );
+        }
+
+
+        /*
+         * JSON conversion from JsonList/Map
+         */
+
+        private List<Arguments> jsonListMethodSource() {
+            return List.of(
+                    Arguments.of(JsonList.fromList(List.of(1, 2, 3, "abc", 55.4D, false)), "[1, 2, 3, \"abc\", 55.4, false]"),
+                    Arguments.of(
+                            JsonList.fromList(List.of(List.of(), nullList(), List.of(true, false), List.of(1), List.of("help"))),
+                            "[[], [null], [true, false], [1], [\"help\"]]"
+                    ),
+                    Arguments.of(
+                            JsonList.fromList(List.of(
+                                    createdLHM(List.of("a", "b", "c"), List.of(1, 2, List.of(64.7D)))
+                            )),
+                            "[{\"a\": 1, \"b\": 2, \"c\": [64.7]}]"
+                    )
+            );
+        }
+
+        private List<Arguments> jsonMapMethodSource() {
+            return List.of(
+                    Arguments.of(JsonMap.fromMap(
+                            createdLHM(List.of("a", "b", "c", "anything can be a key"),
+                                    List.of(42, true, Map.of(), nullList())
+                            )), "{\"a\": 42, \"b\": true, \"c\": {}, \"anything can be a key\": [null]}"),
+                    Arguments.of(JsonMap.fromMap(
+                            createdLHM(List.of("1", "lel"),
+                                       List.of(Map.of(), List.of(
+                                               createdLHM(List.of("1"), List.of(Map.of())),
+                                               2
+                                       )))
+                            ),
+                            "{\"1\": {}, \"lel\": [{\"1\": {}}, 2]}"
+                    ),
+                    Arguments.of(
+                            JsonMap.fromMap(
+                                    createdLHM(List.of("So"),
+                                    List.of(
+                                        List.of(
+                                            createdLHM(List.of("much"),
+                                                List.of(
+                                                    List.of(
+                                                        createdLHM(List.of("nesting..."), List.of(List.of()))
+                                        )   )      )
+                                    )))
+                            ),
+                            "{\"So\": [{\"much\": [{\"nesting...\": []}]}]}"
+                    )
+            );
+        }
+
+        @ParameterizedTest
+        @MethodSource("jsonListMethodSource")
+        public void jsonListConvertsToCorrectJson(JsonList list, String listAsJson) {
+
+            System.out.println("Expected list: " + listAsJson);
+            System.out.println("List to convert: " + list);
+
+            Assertions.assertEquals(listAsJson, list.toJsonString());
+        }
+
+        @ParameterizedTest
+        @MethodSource("jsonMapMethodSource")
+        public void jsonMapConvertsToCorrectJson(JsonMap map, String mapAsJson) {
+            System.out.println("Expected map: " + mapAsJson);
+            System.out.println("Map to convert: " + map);
+
+            Assertions.assertEquals(mapAsJson, map.toJsonString());
         }
     }
 
