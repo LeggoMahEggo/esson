@@ -69,11 +69,18 @@ public class JsonMap extends LinkedHashMap<String, JsonValue> implements JsonCon
 
         int i = 0;
         for (Entry<String, JsonValue> pair : this.entrySet()) {
-            builder.append("\"").append(pair.getKey()).append("\": ");
+            // Add key
+            builder.append("\"")
+                    .append(JsonValue.escapeString(pair.getKey())) // Make sure string is properly escaped
+                    .append("\": ");
+
+            // Add value
             JsonValue value = pair.getValue();
 
             if (value.internal instanceof String)
-                builder.append("\"").append(value.getAsString()).append("\""); // getAsString un-escapes control characters
+                builder.append("\"")
+                        .append(JsonValue.escapeString((String) value.internal))
+                        .append("\""); // getAsString un-escapes control characters
 
             else if (value.internal instanceof JsonContainer)
                 builder.append(((JsonContainer)value.internal).toJsonString()); // Call JsonList/Map's toJsonString method

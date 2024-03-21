@@ -66,7 +66,9 @@ public class JsonList extends ArrayList<JsonValue> implements JsonContainer {
             JsonValue value = this.get(i);
 
             if (value.internal instanceof String)
-                builder.append("\"").append(value.getAsString()).append("\""); // getAsString un-escapes control characters
+                builder.append("\"")
+                        .append(JsonValue.escapeString((String) value.internal))
+                        .append("\"");
 
             else if (value.internal instanceof JsonContainer)
                 builder.append(((JsonContainer)value.internal).toJsonString()); // Call JsonList/Map's toJsonString method

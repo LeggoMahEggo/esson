@@ -46,6 +46,16 @@ public class JsonValue {
         }
     }
 
+    /**
+     * Escapes a String according to JSON specifications
+     * @param str the String to escape
+     * @return a String escaped according to JSON specifications
+     */
+    static String escapeString(String str) {
+        return StringUtils.replaceEach(str, CONTROL_CHARACTERS_TO, CONTROL_CHARACTERS_FROM)
+                .replaceAll("\"", "\\\\\"");
+    }
+
 
     /*
      * Getters
