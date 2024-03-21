@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>esson</name>
     <url>https://github.com/LeggoMahEggo/esson</url>
-    <description>A "just-works" library for parsing JSON into Java</description>
+    <description>A "just works" library for parsing JSON into Java</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
