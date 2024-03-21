@@ -128,7 +128,7 @@ import com.LeggoMahEggo.esson.JsonValue.ValueType;
 ```
 
 ## JsonList.java
-Represents an array; this class simply extends ArrayList\<JsonValue>. It includes a static method to convert a List of valid JSON types (`fromList`)
+Represents an array; this class simply ArrayList\<JsonValue>. It includes a static method to convert a List of valid JSON types (`fromList`), and an instance method (`toJsonString`) to convert all its contents into a correctly formatted JSON string
 
 To use the class, import the following:
 ```java
@@ -136,7 +136,7 @@ import com.LeggoMahEggo.esson.JsonList;
 ```
 
 ## JsonMap.java
-Represents an object; this class simply extends LinkedHashMap<String, JsonValue>. It includes a static method to convert a Map whose values are valid JSON types (`fromMap`)
+Represents an object; this class extends LinkedHashMap<String, JsonValue>. It includes a static method to convert a Map whose values are valid JSON types (`fromMap`), and an instance method (`toJsonString`) to convert all its contents into a correctly formatted JSON string
 
 To use the class, import the following:
 ```java
@@ -153,3 +153,8 @@ esson throws 4 different types of exceptions (all located in `com.LeggoMahEggo.e
 # Acknowledgements
 * Douglas Crockford of https://www.json.org/ for providing me with a clear format to follow for parsing, as well as the bulk of the json file tests (located at https://www.json.org/JSON_checker/)
 * The Google Code Archive for hosting another file which I test (https://code.google.com/archive/p/json-test-suite/downloads)
+
+# License
+```
+To be added
+```
