@@ -8,7 +8,7 @@ import org.apache.commons.math3.util.Precision;
  * (cast to Long), JsonList (backed by an ArrayList), and JsonMap (backed by a LinkedHashMap)
  */
 public class JsonValue {
-    private Object internal; // Wrapped value
+    Object internal; // Wrapped value
     private final static String[] CONTROL_CHARACTERS_FROM = {"\\n", "\\r", "\\t", "\\f", "\\b", "\\\\"};
     private final static String[] CONTROL_CHARACTERS_TO = {"\n", "\r", "\t", "\f", "\b", "\\"};
 
