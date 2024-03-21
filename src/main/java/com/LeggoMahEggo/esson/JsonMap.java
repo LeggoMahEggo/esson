@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 /**
  * This class extends {@link LinkedHashMap}<{@link String},{@link JsonValue}>
  */
-public class JsonMap extends LinkedHashMap<String, JsonValue> {
+public class JsonMap extends LinkedHashMap<String, JsonValue> implements JsonContainer {
 
     /**
      * Converts a Map of objects into a JsonMap containing JsonValue objects. The following types are permissible to
@@ -61,5 +61,30 @@ public class JsonMap extends LinkedHashMap<String, JsonValue> {
         }
 
         return jmap;
+    }
+
+    @Override
+    public String toJsonString() {
+        StringBuilder builder = new StringBuilder().append("{");
+
+        int i = 0;
+        for (Entry<String, JsonValue> pair : this.entrySet()) {
+            builder.append("\"").append(pair.getKey()).append("\": ");
+            JsonValue value = pair.getValue();
+
+            if (value.internal instanceof String)
+                builder.append("\"").append(value.getAsString()).append("\""); // getAsString un-escapes control characters
+
+            else if (value.internal instanceof JsonContainer)
+                builder.append(((JsonContainer)value.internal).toJsonString()); // Call JsonList/Map's toJsonString method
+
+            else
+                builder.append(value);
+
+            if (i++ + 1 < this.size())
+                builder.append(", "); // No extra commas at the end of the object
+        }
+
+        return builder.append("}").toString();
     }
 }

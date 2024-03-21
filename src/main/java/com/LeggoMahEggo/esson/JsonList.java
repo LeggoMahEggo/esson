@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * This class extends {@link ArrayList}<{@link JsonValue}>
  */
-public class JsonList extends ArrayList<JsonValue> {
+public class JsonList extends ArrayList<JsonValue> implements JsonContainer {
 
     /**
      * Converts a List of objects into a JsonList containing JsonValue objects. The following types are permissible to
@@ -56,5 +56,28 @@ public class JsonList extends ArrayList<JsonValue> {
         }
 
         return jlist;
+    }
+
+    @Override
+    public String toJsonString() {
+        StringBuilder builder = new StringBuilder().append("[");
+
+        for (int i = 0; i < this.size(); i++) {
+            JsonValue value = this.get(i);
+
+            if (value.internal instanceof String)
+                builder.append("\"").append(value.getAsString()).append("\""); // getAsString un-escapes control characters
+
+            else if (value.internal instanceof JsonContainer)
+                builder.append(((JsonContainer)value.internal).toJsonString()); // Call JsonList/Map's toJsonString method
+
+            else
+                builder.append(value);
+
+            if (i + 1 < this.size())
+                builder.append(", "); // No extra commas at the end of the array
+        }
+
+        return builder.append("]").toString();
     }
 }
