@@ -191,12 +191,26 @@ public class TestClass {
         }
 
         @ParameterizedTest
+        @MethodSource("jsonListMethodSource")
+        public void parserAcceptsJsonListConversion(JsonList list) {
+            System.out.println("List to convert: " + list);
+            Assertions.assertDoesNotThrow(() -> Parser.parseFromString(list.toJsonString()));
+        }
+
+        @ParameterizedTest
         @MethodSource("jsonMapMethodSource")
         public void jsonMapConvertsToCorrectJson(JsonMap map, String mapAsJson) {
             System.out.println("Expected map: " + mapAsJson);
             System.out.println("Map to convert: " + map);
 
             Assertions.assertEquals(mapAsJson, map.toJsonString());
+        }
+
+        @ParameterizedTest
+        @MethodSource("jsonMapMethodSource")
+        public void parserAcceptsJsonMapConversion(JsonMap map) {
+            System.out.println("Map to convert: " + map);
+            Assertions.assertDoesNotThrow(() -> Parser.parseFromString(map.toJsonString()));
         }
     }
 
