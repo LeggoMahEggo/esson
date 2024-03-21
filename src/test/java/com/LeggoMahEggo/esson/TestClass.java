@@ -144,7 +144,9 @@ public class TestClass {
                                     createdLHM(List.of("a", "b", "c"), List.of(1, 2, List.of(64.7D)))
                             )),
                             "[{\"a\": 1, \"b\": 2, \"c\": [64.7]}]"
-                    )
+                    ),
+                    Arguments.of(JsonList.fromList(List.of("a \" in the list")), "[\"a \\\" in the list\"]"),
+                    Arguments.of(JsonList.fromList(List.of("a \n in the list")), "[\"a \\n in the list\"]")
             );
         }
 
@@ -176,14 +178,17 @@ public class TestClass {
                                     )))
                             ),
                             "{\"So\": [{\"much\": [{\"nesting...\": []}]}]}"
-                    )
+                    ),
+                    Arguments.of(JsonMap.fromMap(createdLHM(List.of("a \" in key"), List.of("a \" in value"))),
+                            "{\"a \\\" in key\": \"a \\\" in value\"}"),
+                    Arguments.of(JsonMap.fromMap(createdLHM(List.of("a \n in key"), List.of("a \n in value"))),
+                            "{\"a \\n in key\": \"a \\n in value\"}")
             );
         }
 
         @ParameterizedTest
         @MethodSource("jsonListMethodSource")
         public void jsonListConvertsToCorrectJson(JsonList list, String listAsJson) {
-
             System.out.println("Expected list: " + listAsJson);
             System.out.println("List to convert: " + list);
 
@@ -194,6 +199,8 @@ public class TestClass {
         @MethodSource("jsonListMethodSource")
         public void parserAcceptsJsonListConversion(JsonList list) {
             System.out.println("List to convert: " + list);
+            System.out.println("List to JSON string: " + list.toJsonString());
+
             Assertions.assertDoesNotThrow(() -> Parser.parseFromString(list.toJsonString()));
         }
 
@@ -210,6 +217,8 @@ public class TestClass {
         @MethodSource("jsonMapMethodSource")
         public void parserAcceptsJsonMapConversion(JsonMap map) {
             System.out.println("Map to convert: " + map);
+            System.out.println("Map to JSON string: " + map.toJsonString());
+
             Assertions.assertDoesNotThrow(() -> Parser.parseFromString(map.toJsonString()));
         }
     }
