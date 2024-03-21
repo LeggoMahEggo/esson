@@ -93,7 +93,7 @@ As of current writing, only the following options exist:
 * enclosing a string with single-quotes
 
 ## JsonValue.java
-This class reprsents the following JSON types:
+This class represents the following JSON types:
 
 * string (String)
 * number (Long/Double)
@@ -116,10 +116,10 @@ The toString() method will return the following:
 * for strings, the internal value wrapped with single-quotes
 * for all other types, the toString() method return value of the internal value
 
-Additionally, for traversing the entire structure, you can call the getValueType() method to check what the JsonValue is representing: These are the possible values that can be returned:
+Additionally, for traversing the entire structure, you can call the getValueType() method to check what the JsonValue is representing. These are the possible values that can be returned:
 * ValueType.LIST - if the internal value is a JsonList
 * ValueType.MAP - if the internal value is a JsonMap
-* ValueType.REGULAR - if the internal value is not an array/object (includes nulls)
+* ValueType.OTHER - if the internal value is any other value (includes nulls)
 
 To use the class, import the following:
 ```java
