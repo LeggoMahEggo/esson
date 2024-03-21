@@ -56,7 +56,7 @@ public class JsonValue {
      *  JsonList values
      */
     public enum ValueType {
-        REGULAR, MAP, LIST
+        LIST, MAP, OTHER
     }
 
     /**
@@ -71,7 +71,7 @@ public class JsonValue {
         if (internal instanceof JsonList)
             return ValueType.LIST;
 
-        return ValueType.REGULAR;
+        return ValueType.OTHER;
     }
 
     /**

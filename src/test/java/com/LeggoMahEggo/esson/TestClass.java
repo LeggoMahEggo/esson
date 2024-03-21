@@ -55,9 +55,9 @@ public class TestClass {
 
                     // Increase count
                     switch (lValue.getValueType()) {
-                        case REGULAR: continue;
                         case LIST: counter.listNum++; break;
-                        case MAP: counter.mapNum++;
+                        case MAP: counter.mapNum++; break;
+                        case OTHER: continue;
                     }
 
                     // Check list/map out
@@ -69,9 +69,9 @@ public class TestClass {
                 for (JsonValue mValue : value.getAsMap().values()) {
                     // Increase count
                     switch (mValue.getValueType()) {
-                        case REGULAR: continue;
                         case LIST: counter.listNum++; break;
-                        case MAP: counter.mapNum++;
+                        case MAP: counter.mapNum++; break;
+                        case OTHER: continue;
                     }
 
                     // Check list/map out
@@ -133,13 +133,6 @@ public class TestClass {
         private List<Arguments> valueTypeMethodSource() {
             List<Arguments> list = new ArrayList<>(); // Not List.of() so as to allow null values
 
-            // Regular
-            list.add(Arguments.of(null, ValueType.REGULAR));
-            list.add(Arguments.of(true, ValueType.REGULAR));
-            list.add(Arguments.of(15, ValueType.REGULAR));
-            list.add(Arguments.of(87.2, ValueType.REGULAR));
-            list.add(Arguments.of("yabba dabba doo!", ValueType.REGULAR));
-
             // List
             list.add(Arguments.of(JsonList.fromList(List.of()), ValueType.LIST));
             list.add(Arguments.of(JsonList.fromList(List.of(1, 2, 3, 4)), ValueType.LIST));
@@ -151,6 +144,13 @@ public class TestClass {
             list.add(Arguments.of(JsonMap.fromMap(createdLHM(List.of("a", "b"), List.of(1, 2))), ValueType.MAP));
             list.add(Arguments.of(JsonMap.fromMap(createdLHM(List.of("Here's a list ;)"), List.of(List.of("boop!")))),
                     ValueType.MAP));
+
+            // Other
+            list.add(Arguments.of(null, ValueType.OTHER));
+            list.add(Arguments.of(true, ValueType.OTHER));
+            list.add(Arguments.of(15, ValueType.OTHER));
+            list.add(Arguments.of(87.2, ValueType.OTHER));
+            list.add(Arguments.of("yabba dabba doo!", ValueType.OTHER));
 
             return list;
         }
