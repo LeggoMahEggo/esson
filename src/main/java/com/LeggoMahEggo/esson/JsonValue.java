@@ -1,7 +1,5 @@
 package com.LeggoMahEggo.esson;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.math3.util.Precision;
 
 /**
  * Represents some legal JSON value, wrapping a Java value. Valid types are null, Boolean, String, Long, Double, Integer
@@ -52,8 +50,11 @@ public class JsonValue {
      * @return a String escaped according to JSON specifications
      */
     static String escapeString(String str) {
-        return StringUtils.replaceEach(str, CONTROL_CHARACTERS_TO, CONTROL_CHARACTERS_FROM)
-                .replaceAll("\"", "\\\\\"");
+        // Was using StringUtils.replaceEach, removed it to avoid multiple licensing headaches
+        for (int i = 0; i < CONTROL_CHARACTERS_TO.length; i++)
+            str = str.replace(CONTROL_CHARACTERS_TO[i], CONTROL_CHARACTERS_FROM[i]);
+
+        return str.replace("\"", "\\\"");
     }
 
 
@@ -104,7 +105,11 @@ public class JsonValue {
         if (!str.contains("\\"))
             return str;
 
-        return StringUtils.replaceEach(str, CONTROL_CHARACTERS_FROM, CONTROL_CHARACTERS_TO); // Properly escape escaped characters
+        // Was using StringUtils.replaceEach, removed it to avoid multiple licensing headaches
+        for (int i = 0; i < CONTROL_CHARACTERS_FROM.length; i++)
+            str = str.replace(CONTROL_CHARACTERS_FROM[i], CONTROL_CHARACTERS_TO[i]);
+
+        return str;
     }
 
     /**
@@ -185,12 +190,22 @@ public class JsonValue {
             return otherValue.getAsNumber().longValue() == getAsNumber().longValue();
 
         // Double
-        if (otherValue.internal instanceof Double && internal instanceof Double)
-            return Precision.equals(
-                    otherValue.getAsNumber().doubleValue(),
-                    getAsNumber().doubleValue(),
-                    0.000001d
-            );
+        if (otherValue.internal instanceof Double && internal instanceof Double) {
+            // Was using Precision.equals, removed it to avoid multiple licensing headaches
+            double epsilon = 0.000001d;
+            Double double1 = otherValue.getAsNumber().doubleValue();
+            Double double2 = getAsNumber().doubleValue();
+
+            // Infinite values
+            if (double1.isInfinite() || double2.isInfinite())
+                return false;
+
+            // Not a number
+            if (double1.isNaN() || double2.isNaN())
+                return false;
+
+            return Math.abs(double1 - double2) < epsilon;
+        }
 
         // List
         if (otherValue.internal instanceof JsonList && internal instanceof JsonList)
