@@ -7,8 +7,8 @@ package com.LeggoMahEggo.esson;
  */
 public class JsonValue {
     Object internal; // Wrapped value
-    private final static String[] CONTROL_CHARACTERS_FROM = {"\\n", "\\r", "\\t", "\\f", "\\b", "\\\\"};
-    private final static String[] CONTROL_CHARACTERS_TO = {"\n", "\r", "\t", "\f", "\b", "\\"};
+    private final static String[] CONTROL_CHARACTERS_FROM = {"\\n", "\\r", "\\t", "\\f", "\\b"};
+    private final static String[] CONTROL_CHARACTERS_TO = {"\n", "\r", "\t", "\f", "\b"};
 
     /**
      * Factory method to return a JsonValue object with its internal value set
