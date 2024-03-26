@@ -152,7 +152,6 @@ esson throws 4 different types of exceptions (all located in `com.LeggoMahEggo.e
 
 # Acknowledgements
 * Douglas Crockford of https://www.json.org/ for providing me with a clear format to follow for parsing, as well as the bulk of the json file tests (located at https://www.json.org/JSON_checker/)
-* The Google Code Archive for hosting another file which I test (https://code.google.com/archive/p/json-test-suite/downloads)
 
 # License
 ```

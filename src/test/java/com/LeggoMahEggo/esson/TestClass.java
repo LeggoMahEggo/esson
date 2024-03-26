@@ -352,7 +352,6 @@ public class TestClass {
         private final List<File> PASS_FILES = new ArrayList<>();
         private final List<File> FAIL_FILES = new ArrayList<>();
         private final List<String> TEST_FOLDERS = List.of(
-                "Google_Code_json-test-suite",
                 "json.org_JSON_checker",
                 "custom"
         );
