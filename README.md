@@ -163,6 +163,6 @@ esson throws 4 different types of exceptions (all located in `com.LeggoMahEggo.e
 * Douglas Crockford of https://www.json.org/ for providing me with a clear format to follow for parsing, as well as the bulk of the json file tests (located at https://www.json.org/JSON_checker/)
 
 # License
-esson is licensed under the LGPL 3.0 license. For more information, please visit https://www.gnu.org/licenses/licenses.html
+esson is licensed under the LGPL 3.0 license; [tl;drLegal](https://www.tldrlegal.com/license/gnu-lesser-general-public-license-v3-lgpl-3) has a great summary of what it entails (do not use it for legal advice). For more detailed information, please visit https://www.gnu.org/licenses/licenses.html
 
 Additionally, esson uses the Junit5 framework for tests; no changes have been made to JUnit5's source code. BOM files generated with CycloneDX have been included with the repo.
