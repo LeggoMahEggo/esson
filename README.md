@@ -1,3 +1,5 @@
+![lgpl3.0](https://www.gnu.org/graphics/lgplv3-with-text-154x68.png)
+
 # esson
 esson (**S**imple J**SON**) is a "just works" parser -- all you do is call a single method, which a returns a simple set of structures that are easy to navigate and pull data from. Serialization or converting to specific object types was not my goal with the project (though if needed I may look into that in the future).
 
@@ -143,6 +145,13 @@ To use the class, import the following:
 import com.LeggoMahEggo.esson.JsonMap;
 ```
 
+### Final note
+Both JsonList and JsonMap extend an interface called JsonContainer -- it implements the `toJsonString` method. To use the interface, import the following:
+
+```java
+import com.LeggoMahEggo.esson.JsonContainer;
+```
+
 # Exceptions
 esson throws 4 different types of exceptions (all located in `com.LeggoMahEggo.esson.exceptions`):
 * JsonParserException: the base exception thrown
@@ -154,6 +163,6 @@ esson throws 4 different types of exceptions (all located in `com.LeggoMahEggo.e
 * Douglas Crockford of https://www.json.org/ for providing me with a clear format to follow for parsing, as well as the bulk of the json file tests (located at https://www.json.org/JSON_checker/)
 
 # License
-```
-To be added
-```
+esson is licensed under the LGPL 3.0 license. For more information, please visit https://www.gnu.org/licenses/licenses.html
+
+Additionally, esson uses the Junit5 framework for tests; no changes have been made to JUnit5's source code. BOM files generated with CycloneDX have been included with the repo.
