@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom serialNumber="urn:uuid:3cf76ba0-2a4f-39d6-bb65-b81aa07cff39" version="1" xmlns="http://cyclonedx.org/schema/bom/1.5">
+  <metadata>
+    <timestamp>2024-04-01T06:13:09Z</timestamp>
+    <lifecycles>
+      <lifecycle>
+        <phase>build</phase>
+      </lifecycle>
+    </lifecycles>
+    <tools>
+      <tool>
+        <vendor>OWASP Foundation</vendor>
+        <name>CycloneDX Maven plugin</name>
+        <version>2.8.0</version>
+        <hashes>
+          <hash alg="MD5">76ffec6a7ddd46b2b24517411874eb99</hash>
+          <hash alg="SHA-1">5b0d5b41975b53be4799b9621b4af0cfc41d44b6</hash>
+          <hash alg="SHA-256">6852aa0f4e42a2db745bab80e384951a6a65b9215d041081d675780999027e81</hash>
+          <hash alg="SHA-512">417de20fcdcb11c9713bacbd57290d8e68037fdb4553fd31b8cb08bd760ad52dc65ea88ad4be15844ad3fd5a4d3e440d2f70326f2fe1e63ec78e059c9a883f8d</hash>
+          <hash alg="SHA-384">5eb755c6492e7a7385fa9a1e1f4517875bcb834b2df437808a37a2d6f5285df428741762305980315a63fcef1406597d</hash>
+          <hash alg="SHA3-384">0fe16a47cf7aab0b22251dafcc39939b68e8f1778093309d8d2060b51a08df445a8b8ed5a9561669faf2e55f907c76d8</hash>
+          <hash alg="SHA3-256">3e5a1eb5ab7d0797498862794709ff8eaaa071fe4cc9ec77f52db7e2f97ef487</hash>
+          <hash alg="SHA3-512">59281a3e29e76270d7f44b40b5b9f05e55f1ae3ec716d80add806f360940809e3813998ac7c5758043b8e248aed73b86e37dc506cdb4cde03c16bb617d8e5a3a</hash>
+        </hashes>
+      </tool>
+    </tools>
+    <component type="library" bom-ref="pkg:maven/com.github.LeggoMahEggo/esson@1.0.0?type=jar">
+      <group>com.github.LeggoMahEggo</group>
+      <name>esson</name>
+      <version>1.0.0</version>
+      <description>A "just works" library for parsing JSON into Java</description>
+      <licenses>
+        <license>
+          <id>LGPL-3.0-or-later</id>
+          <url>https://www.gnu.org/licenses/lgpl-3.0-standalone.html</url>
+        </license>
+      </licenses>
+      <purl>pkg:maven/com.github.LeggoMahEggo/esson@1.0.0?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://github.com/LeggoMahEggo/esson</url></reference><reference type="vcs"><url>http://github.com/LeggoMahEggo/esson/tree/master</url></reference></externalReferences>
+    </component>
+    <properties>
+      <property name="maven.goal">makeAggregateBom</property>
+      <property name="maven.scopes">compile,provided,runtime,system</property>
+    </properties>
+  </metadata>
+  <components>
+    <component type="library" bom-ref="pkg:maven/org.junit.jupiter/junit-jupiter-api@5.10.2?type=jar">
+      <group>org.junit.jupiter</group>
+      <name>junit-jupiter-api</name>
+      <version>5.10.2</version>
+      <description>Module "junit-jupiter-api" of JUnit 5.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">6e691e23a36de8cbda5cbcc9f31461e3</hash>
+        <hash alg="SHA-1">fb55d6e2bce173f35fd28422e7975539621055ef</hash>
+        <hash alg="SHA-256">afff77c186cd317275803872fa5133aa801fd6ac40bd91c78a6cf8009b4b17cc</hash>
+        <hash alg="SHA-512">7dfb74405cc011bf0b9176f2093686680225ef32658ec82b55bad9857eb38999b8ac25c23f920127b426120bfc20938f2d9dc8df111a509d9858d350e5ff7685</hash>
+        <hash alg="SHA-384">5ef5590ce923e0e5b33e821e1ef650ff30be70433fdd03ab0986ad68f71e18a804c43a8736e5ee619b676218de4d6142</hash>
+        <hash alg="SHA3-384">dfe5609aa1e95c4156fe2f0143ffb9d327d734a372ccccaca1d2d307b370fb79c5eacc8f228f90d5382f64cd0508447e</hash>
+        <hash alg="SHA3-256">db3d74ba82ebe3eed0779121c694d3f40932c8c6f1f5985ec0187ebc6af6cfde</hash>
+        <hash alg="SHA3-512">43cf8157d2de72a4fbbd6c0f92adb32d9454e3b1e32667d11b98916a3310f0835a0a38766ac0e56387e87e916fc4d18cd6b953150e404bc05a743605be90250c</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>EPL-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.junit.jupiter/junit-jupiter-api@5.10.2?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://junit.org/junit5/</url></reference><reference type="vcs"><url>https://github.com/junit-team/junit5</url></reference></externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar">
+      <group>org.opentest4j</group>
+      <name>opentest4j</name>
+      <version>1.3.0</version>
+      <description>Open Test Alliance for the JVM</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">03c404f727531f3fd3b4c73997899327</hash>
+        <hash alg="SHA-1">152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e</hash>
+        <hash alg="SHA-256">48e2df636cab6563ced64dcdff8abb2355627cb236ef0bf37598682ddf742f1b</hash>
+        <hash alg="SHA-512">78fc698a7871bb50305e3657893c10500595f043348d875f57bc39ca4a6a51eda3967b7c8c8a7ec3e8f85f2171bca4aa98823e912e416e87e81c6ba5b70a37c3</hash>
+        <hash alg="SHA-384">10398b6998c9202a0731e2e19ae1c3f9d8a83582c2663fe7bdda15794ee6fa816727dbd8f7c7164bd5395ee1cfe7c97e</hash>
+        <hash alg="SHA3-384">3abe706fd78509c25a402c7bbf6f9ddf71ffb5b35054864ba0fdf7902207115f888a0ba728fd71d2e87a9360d2498121</hash>
+        <hash alg="SHA3-256">d961907a1bfa1dcda329dca494ffbc251b31fabcaca5ab7095661a8ce3c1d654</hash>
+        <hash alg="SHA3-512">0ad661617bcac51bcd26f7ad4611c69b1fd9811b50dbf734e041a3243ab1f845e7796620e8a7c40c4a2df3946864598b1251396c7d9bd813203d82710788cce0</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://github.com/ota4j-team/opentest4j</url></reference><reference type="vcs"><url>https://github.com/ota4j-team/opentest4j</url></reference></externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.junit.platform/junit-platform-commons@1.10.2?type=jar">
+      <group>org.junit.platform</group>
+      <name>junit-platform-commons</name>
+      <version>1.10.2</version>
+      <description>Module "junit-platform-commons" of JUnit 5.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">ae199049daca42c359e64974009025c5</hash>
+        <hash alg="SHA-1">3197154a1f0c88da46c47a9ca27611ac7ec5d797</hash>
+        <hash alg="SHA-256">b56a5ec000a479df4973b18bba24c98fe0db8faa14c8907d3ef451d8c71fd8ae</hash>
+        <hash alg="SHA-512">aa739ee21b91fd4476aa5f9ad975f83cd440b6fbac71c8cc15816e3924710c0d70838465ee22a1b7390c2bae42ef1809868fa7ae0169b75f437cd95baac539d1</hash>
+        <hash alg="SHA-384">0963ac9cf11f6312a807b4068dacd66cab7f6378445b4dc2cfd62b62dd7afe609fe389aff4fd2006cdcc564670e849af</hash>
+        <hash alg="SHA3-384">64688f7803aff2ac8d536c5f9e11891f6b5bfae23580b2513ff4fde3c1f28509a27c483e91fd974e1fbca4a7cbaf3f87</hash>
+        <hash alg="SHA3-256">83d491a6808587990e165c5065a7c938760065248083d9d05e81d9e4802d7764</hash>
+        <hash alg="SHA3-512">1d54bed73766715b245012bce223e440703ff2fb8c7d5cfd208393060c2d63178e69e21aa739e5196599dcd1a79decf595cf142abc34ade6bd45a2b1d269f724</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>EPL-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.junit.platform/junit-platform-commons@1.10.2?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://junit.org/junit5/</url></reference><reference type="vcs"><url>https://github.com/junit-team/junit5</url></reference></externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar">
+      <group>org.apiguardian</group>
+      <name>apiguardian-api</name>
+      <version>1.1.2</version>
+      <description>@API Guardian</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">8c7de3f82037fa4a2e8be2a2f13092af</hash>
+        <hash alg="SHA-1">a231e0d844d2721b0fa1b238006d15c6ded6842a</hash>
+        <hash alg="SHA-256">b509448ac506d607319f182537f0b35d71007582ec741832a1f111e5b5b70b38</hash>
+        <hash alg="SHA-512">d7ccd0e7019f1a997de39d66dc0ad4efe150428fdd7f4c743c93884f1602a3e90135ad34baea96d5b6d925ad6c0c8487c8e78304f0a089a12383d4a62e2c9a61</hash>
+        <hash alg="SHA-384">5ae11cfedcee7da43a506a67946ddc8a7a2622284a924ba78f74541e9a22db6868a15f5d84edb91a541e38afded734ea</hash>
+        <hash alg="SHA3-384">c146116b3dfd969200b2ce52d96b92dd02d6f5a45a86e7e85edf35600ddbc2f3c6e8a1ad7e2db4dcd2c398c09fad0927</hash>
+        <hash alg="SHA3-256">b4b436d7f615fc0b820204e69f83c517d1c1ccc5f6b99e459209ede4482268de</hash>
+        <hash alg="SHA3-512">7b95b7ac68a6891b8901b5507acd2c24a0c1e20effa63cd513764f513eab4eb55f8de5178edbe0a400c11f3a18d3f56243569d6d663100f06dd98288504c09c5</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://github.com/apiguardian-team/apiguardian</url></reference><reference type="vcs"><url>https://github.com/apiguardian-team/apiguardian</url></reference></externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:maven/org.junit.jupiter/junit-jupiter-params@5.10.2?type=jar">
+      <group>org.junit.jupiter</group>
+      <name>junit-jupiter-params</name>
+      <version>5.10.2</version>
+      <description>Module "junit-jupiter-params" of JUnit 5.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="MD5">2f33df4bff7fbfb15352803fa575b88d</hash>
+        <hash alg="SHA-1">359132c82a9d3fa87a325db6edd33b5fdc67a3d8</hash>
+        <hash alg="SHA-256">edb1e43ff0b8067626ffb55e5e9eeca1d9ab2478141a7c7f253d115b29cc7cf2</hash>
+        <hash alg="SHA-512">002b2010769413f1bc86cf95a48f679eeb7a372379e8f401f892d03bd1089483937a77f08c095579f81b8f0a27896fac6bebdc4c09a2dff9f5459e09207ac0d8</hash>
+        <hash alg="SHA-384">f026f977c21b4d19611ea2ac8a18cb7c6110787241fd47f650557e427db0289aadd12a1069b46e73cb807bf45bb69455</hash>
+        <hash alg="SHA3-384">210369e1ccd3a70a0b4fd785777367994414163361ed9d9c449b0b2364dd43122579d48ebb8feb923548c8f43eb74067</hash>
+        <hash alg="SHA3-256">3714beec66c923801a378969a1d370a43761a5f18e86e26c8161763ad19adb69</hash>
+        <hash alg="SHA3-512">edcd46e165d048ad49e023c1a71d14b9046c8dd1be20f908b63bde859dad2c76e6b84e8c100ca0e17008f22c3cddd1b4d427b7c4041e6cceea559ef707cfd024</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <id>EPL-2.0</id>
+        </license>
+      </licenses>
+      <purl>pkg:maven/org.junit.jupiter/junit-jupiter-params@5.10.2?type=jar</purl>
+      <externalReferences><reference type="website"><url>https://junit.org/junit5/</url></reference><reference type="vcs"><url>https://github.com/junit-team/junit5</url></reference></externalReferences>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="pkg:maven/com.github.LeggoMahEggo/esson@1.0.0?type=jar">
+      <dependency ref="pkg:maven/org.junit.jupiter/junit-jupiter-api@5.10.2?type=jar"/>
+      <dependency ref="pkg:maven/org.junit.jupiter/junit-jupiter-params@5.10.2?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.junit.jupiter/junit-jupiter-api@5.10.2?type=jar">
+      <dependency ref="pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar"/>
+      <dependency ref="pkg:maven/org.junit.platform/junit-platform-commons@1.10.2?type=jar"/>
+      <dependency ref="pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar"/>
+    <dependency ref="pkg:maven/org.junit.platform/junit-platform-commons@1.10.2?type=jar">
+      <dependency ref="pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar"/>
+    </dependency>
+    <dependency ref="pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar"/>
+    <dependency ref="pkg:maven/org.junit.jupiter/junit-jupiter-params@5.10.2?type=jar">
+      <dependency ref="pkg:maven/org.junit.jupiter/junit-jupiter-api@5.10.2?type=jar"/>
+      <dependency ref="pkg:maven/org.apiguardian/apiguardian-api@1.1.2?type=jar"/>
+    </dependency>
+  </dependencies>
+</bom>
