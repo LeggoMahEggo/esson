@@ -13,7 +13,7 @@ To add esson to your project, add the following to your pom.xml file:
 </dependency>
 ```
 ### Temporary note
-I have yet to get esson uploaded to Maven's Central Repository. In the meantime, to add esson to your project, clone the repo, cd into it and run `mvn clean install`
+I have yet to get esson uploaded to Maven's Central Repository. In the meantime, to add esson to your local Maven repository, clone the repo, cd into it and run `mvn clean install`
 
 # How to use
 The following classes are all you need to use esson:
