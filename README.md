@@ -6,8 +6,14 @@ esson (**S**imple J**SON**) is a "just works" parser -- all you do is call a sin
 # Download
 To add esson to your project, add the following to your pom.xml file:
 ```
-To be added
+<dependency>
+  <groupId>com.github.LeggoMahEggo</groupId>
+  <artifactId>esson</artifactId>
+  <version>1.0.0</version>
+</dependency>
 ```
+### Temporary note
+I have yet to get esson uploaded to Maven's Central Repository. In the meantime, to add esson to your project, clone the repo, cd into it and run `mvn clean install`
 
 # How to use
 The following classes are all you need to use esson:
