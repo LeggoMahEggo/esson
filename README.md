@@ -34,9 +34,9 @@ import com.LeggoMahEggo.esson.JsonValue;
 public class Main {
   public static void main(String[] args) {
     JsonValue value = Parser.parseFromString("[\"A very simple example\"]");
-    System.out.println(v);
-    System.out.println(v.getAsList().get(0));
-    System.out.println(v.getAsList().get(0).getAsString());
+    System.out.println(value);
+    System.out.println(value.getAsList().get(0));
+    System.out.println(value.getAsList().get(0).getAsString());
   }
 }
 ```
