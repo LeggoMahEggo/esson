@@ -1,7 +1,7 @@
 ![lgpl3.0](https://www.gnu.org/graphics/lgplv3-with-text-154x68.png)
 
 # esson
-esson (**S**imple J**SON**) is a "just works" parser -- all you do is call a single method, which a returns a simple set of structures that are easy to navigate and pull data from. Serialization or converting to specific object types was not my goal with the project (though if needed I may look into that in the future).
+esson (**S**imple J**SON**) is a "just works" parser -- all you do is call a single method, which returns a simple set of structures that are easy to navigate and pull data from. Serialization or converting to specific object types was not my goal with the project (though if needed I may look into that in the future).
 
 # Download
 To add esson to your project, add the following to your pom.xml file:
