@@ -157,7 +157,16 @@ class Cursor {
      * @return true if the end has been reached, false otherwise
      */
     public boolean atEndOfJson(boolean inclusive) {
-        return (inclusive) ? index + 1 >= jsonLength : index + 1 > jsonLength;
+       return (inclusive) ? index + 1 >= jsonLength : index + 1 > jsonLength;
+    }
+
+    /**
+     * Checks if the JSON string, from the cursor until the end, is blank
+     * @return true if the rest of the string is blank, false otherwise
+     * @throws JsonParserException if the internal index is greater than or equal to the length of the internal JSON string
+     */
+    public boolean restOfStringIsBlank() throws JsonParserException {
+        return json.substring(index).isBlank();
     }
 
 

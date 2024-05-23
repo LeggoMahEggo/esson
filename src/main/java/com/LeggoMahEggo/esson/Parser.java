@@ -147,7 +147,7 @@ public class Parser {
                 }
 
                 // Make sure the end character is a ]
-                if (!cursor.atEndOfJson(true))
+                if (!cursor.atEndOfJson(true) && !cursor.restOfStringIsBlank())
                     cursor.moveToFirstNonWhitespace();
 
                 if (currentChar != ']')
@@ -223,7 +223,7 @@ public class Parser {
                     continue;
 
                 // Make sure the end character is a }
-                if (!cursor.atEndOfJson(true))
+                if (!cursor.atEndOfJson(true) && !cursor.restOfStringIsBlank())
                     cursor.moveToFirstNonWhitespace();
 
                 if (currentChar != '}')
