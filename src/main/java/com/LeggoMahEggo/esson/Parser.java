@@ -87,11 +87,8 @@ public class Parser {
     public static JsonValue parseFromFile(File file, Options options) throws JsonParserException {
         String json;
 
-        try (FileInputStream is = new FileInputStream(file)) {
-            int fileLen = (int) file.length();
-            byte[] fileBytes = new byte[fileLen];
-            is.read(fileBytes, 0, fileLen);
-
+        try (FileInputStream jsonStream = new FileInputStream(file)) {
+            byte[] fileBytes = jsonStream.readAllBytes();
             json = new String(fileBytes, StandardCharsets.UTF_8);
 
         } catch (IOException e) {
